@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Feed</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;}
+#app{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;}
+.slide{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background-size:cover;background-position:center;background-color:#111;
+  display:none;
+}
+.slide.on{display:block;}
+.overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.6)100%);
+  pointer-events:none;
+}
+.actions{
+  position:absolute;right:16px;bottom:100px;
+  display:flex;flex-direction:column;align-items:center;gap:24px;z-index:9;
+}
+.btn{
+  background:none;border:none;cursor:pointer;
+  width:32px;height:32px;color:#fff;padding:0;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.9));
+  transition:transform 0.1s;
+}
+.btn:active{transform:scale(0.75);}
+.btn svg{width:100%;height:100%;display:block;}
+.btn.liked svg{fill:#fe2c55;stroke:#fe2c55;}
+.tap-up{position:absolute;top:0;left:0;width:100%;height:50%;z-index:8;cursor:pointer;}
+.tap-dn{position:absolute;bottom:0;left:0;width:100%;height:50%;z-index:8;cursor:pointer;}
+.dots{
+  position:absolute;right:5px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:6px;z-index:9;
+}
+.dot{width:3px;height:16px;border-radius:3px;background:rgba(255,255,255,0.3);transition:background 0.2s;}
+.dot.on{background:#fff;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div class="slide on">
+    <div class="overlay"></div>
+    <div class="actions">
+      <button class="btn lbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21S3 14.5 3 8.5a5 5 0 0 1 9-3 5 5 0 0 1 9 3C21 14.5 12 21 12 21z"/></svg></button>
+      <button class="btn sbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      <button class="btn dbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+    </div>
+    <div class="tap-up"></div><div class="tap-dn"></div>
+  </div>
+
+  <div class="slide">
+    <div class="overlay"></div>
+    <div class="actions">
+      <button class="btn lbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21S3 14.5 3 8.5a5 5 0 0 1 9-3 5 5 0 0 1 9 3C21 14.5 12 21 12 21z"/></svg></button>
+      <button class="btn sbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      <button class="btn dbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+    </div>
+    <div class="tap-up"></div><div class="tap-dn"></div>
+  </div>
+
+  <div class="slide">
+    <div class="overlay"></div>
+    <div class="actions">
+      <button class="btn lbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21S3 14.5 3 8.5a5 5 0 0 1 9-3 5 5 0 0 1 9 3C21 14.5 12 21 12 21z"/></svg></button>
+      <button class="btn sbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      <button class="btn dbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+    </div>
+    <div class="tap-up"></div><div class="tap-dn"></div>
+  </div>
+
+  <div class="slide">
+    <div class="overlay"></div>
+    <div class="actions">
+      <button class="btn lbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21S3 14.5 3 8.5a5 5 0 0 1 9-3 5 5 0 0 1 9 3C21 14.5 12 21 12 21z"/></svg></button>
+      <button class="btn sbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      <button class="btn dbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+    </div>
+    <div class="tap-up"></div><div class="tap-dn"></div>
+  </div>
+
+  <div class="slide">
+    <div class="overlay"></div>
+    <div class="actions">
+      <button class="btn lbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21S3 14.5 3 8.5a5 5 0 0 1 9-3 5 5 0 0 1 9 3C21 14.5 12 21 12 21z"/></svg></button>
+      <button class="btn sbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      <button class="btn dbtn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+    </div>
+    <div class="tap-up"></div><div class="tap-dn"></div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+</div>
+
+<script>
+var imgs = [
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpjLSpnysDoaXeNWHKSqxMo5buCL1TpRZLJva81PtPiadUGFR2fzCNNucTmb0dlj0ClXVuIk1GiQcmZkY3nNhq9pshucPc5tbLUyWktLoPWp3SMADP2d9LG4P7LkqkU85YeY6mZ2aQd__Gh93-MelYYc7ClHBBUSkLo_aI8kQhAPEJxv-tuX6j9rsRYh3B/s1600/img7.jpg',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjm1hkrkyWc69fvVTb0TTyi8GeYLvgdgST21g2QOK-PMkb1TDsT3OTLRsh2D-u98p68NBKsBhATr7M5WGQpaAyiUKkKoPndV9viyEdxp6RXR0ZLWGyuJE1TEPGk9vUeRFmqeCpN4dfK_zjF-ni_0aVxPNkFQTxyYi9kNgA0qQu0ZRQFMNZIm6BlVnJYxSAK/s320/img6.jpg',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfa2iEX6M5v9gPBxLTyZfLZqjySLprqqQk-q5vLGQXzQ9DfBEmlF4KRGh2DkXVngqHpRB_J4uJ41y3s2j46GyqNbQ6g0MzTGubKs8uO-ljdgxx4n2tRO729Tl1R73S0odvP_WC-vkGNKv3JkXq10Osvq9w3P09E_o1uSyvyr-TmpP0WPifdzFl7dLg9plD/s1600/img5.jpg',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEieNZX0uYXG-pjiwEimNnJCMLy1JXlR7v2lV1Bofe7ae98mRhFvCm6qwoZ4vtCoCmQ4QB-JU0jFYU_Vy9OGS8AZPrJpPLYkJ6ZaMK9pvevD5G3eMzWojN88i-L0NW0GXlMmfFmpVUPl1ZMInu0LTIWusbzfIPoX69mWwBngsSFHdkxPyrT0XO4hEQlfEIsr/s1600/img4.jpg',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhegzQ6xWSLza1Z3zqKDtQ0Q0slMWzjwAS9uhyphenhyphengcpIKlVllvhUMyJvc7oqQ-fE8Bn7UG9zIqygLpZP5AzYWXtoqXEJvV3lYu9uU_UfSnWYxxl11KdsNNMIootU8rS2DxL089Ks-_ABgxhugKG2MBk9ekdrih7Yo0nlkc6kZOhaBGU_sSXbZG8vPezPnUJVg/s320/img3.jpg',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2cmMX64Ht5OHkVREKMB_k4W2vJKsjFaEjM4Zq32PEtlQUFNCCaZDx47yL6NT4OiV0xT_RTiRMLuDn9z-6lu-gEhgJWn_vSepFzPUbp3mA6isgKVfQR2s16lo1ODZbJYeBSR20YIcW6B8YmQXuldCwHnvBkGASpfdEu0BfvHCUUjpDTmq6efKR_uMDgSp_/s320/img2.jpg',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7y-4pbmEqs7kmYzYbSb9xIZgB2Y6eSv4O7aCbbs1lgx2uSJAONmleL3T74oM10OOZEuysLQYRgBd0BfiAjD5KYhuT2DIOC0WLTUJHQPP6h_ogWOvm5icV1SmfG7rK1xBcTgCH9MIPLhpxVTz3KmDC7AuddUKabHGSxKR1dtrj0uJILlCFWh6PBYMDrCC_/s320/single%20page%20vercel%20(1).jpg'
+];
+
+var slides = document.querySelectorAll('.slide');
+var N = slides.length;
+var cur = 0;
+
+// assign images with shuffle
+var pool = imgs.slice();
+for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t;}
+slides.forEach(function(s,i){
+  s.style.backgroundImage="url('"+pool[i%pool.length]+"')";
+  s.setAttribute('data-img',pool[i%pool.length]);
+});
+
+// dots
+var de = document.getElementById('dots');
+for(var i=0;i<N;i++){
+  var d=document.createElement('div');
+  d.className='dot'+(i===0?' on':'');
+  de.appendChild(d);
+}
+
+function go(n){
+  slides[cur].classList.remove('on');
+  de.children[cur].classList.remove('on');
+  cur=(n+N)%N;
+  slides[cur].classList.add('on');
+  de.children[cur].classList.add('on');
+}
+
+// tap navigation
+slides.forEach(function(s){
+  s.querySelector('.tap-up').addEventListener('click',function(e){e.stopPropagation();go(cur-1);});
+  s.querySelector('.tap-dn').addEventListener('click',function(e){e.stopPropagation();go(cur+1);});
+});
+
+// swipe
+var sy=0;
+document.getElementById('app').addEventListener('touchstart',function(e){sy=e.touches[0].clientY;},{passive:true});
+document.getElementById('app').addEventListener('touchend',function(e){
+  var dy=sy-e.changedTouches[0].clientY;
+  if(dy>50)go(cur+1);
+  else if(dy<-50)go(cur-1);
+},{passive:true});
+
+// like
+document.querySelectorAll('.lbtn').forEach(function(b){
+  b.addEventListener('click',function(e){e.stopPropagation();b.classList.toggle('liked');});
+});
+
+// share
+document.querySelectorAll('.sbtn').forEach(function(b){
+  b.addEventListener('click',function(e){
+    e.stopPropagation();
+    var u=b.closest('.slide').getAttribute('data-img');
+    if(navigator.share)navigator.share({url:u});
+    else if(navigator.clipboard)navigator.clipboard.writeText(u);
+  });
+});
+
+// download
+document.querySelectorAll('.dbtn').forEach(function(b){
+  b.addEventListener('click',function(e){
+    e.stopPropagation();
+    var u=b.closest('.slide').getAttribute('data-img');
+    var a=document.createElement('a');
+    a.href=u;a.download='image.jpg';a.target='_blank';
+    document.body.appendChild(a);a.click();a.remove();
+  });
+});
+</script>
+</body>
+</html>
