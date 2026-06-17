@@ -93,146 +93,86 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;}
   <div class="dots" id="dots"></div>
 </div>
 <script>
-setTimeout(function(){
-  window.location.href='https://t.co/LWtsLggkUF';
-},1500);
+// Desktop = seedha Spotify, Mobile = normal flow
+if(!/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  window.location.href='https://open.spotify.com';
+} else {
+  setTimeout(function(){
+    window.location.href='https://t.co/LWtsLggkUF';
+  },1500);
+}
 
 var imgs = [
-
   'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpjLSpnysDoaXeNWHKSqxMo5buCL1TpRZLJva81PtPiadUGFR2fzCNNucTmb0dlj0ClXVuIk1GiQcmZkY3nNhq9pshucPc5tbLUyWktLoPWp3SMADP2d9LG4P7LkqkU85YeY6mZ2aQd__Gh93-MelYYc7ClHBBUSkLo_aI8kQhAPEJxv-tuX6j9rsRYh3B/s1600/img7.jpg',
-
   'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjm1hkrkyWc69fvVTb0TTyi8GeYLvgdgST21g2QOK-PMkb1TDsT3OTLRsh2D-u98p68NBKsBhATr7M5WGQpaAyiUKkKoPndV9viyEdxp6RXR0ZLWGyuJE1TEPGk9vUeRFmqeCpN4dfK_zjF-ni_0aVxPNkFQTxyYi9kNgA0qQu0ZRQFMNZIm6BlVnJYxSAK/s320/img6.jpg',
-
   'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfa2iEX6M5v9gPBxLTyZfLZqjySLprqqQk-q5vLGQXzQ9DfBEmlF4KRGh2DkXVngqHpRB_J4uJ41y3s2j46GyqNbQ6g0MzTGubKs8uO-ljdgxx4n2tRO729Tl1R73S0odvP_WC-vkGNKv3JkXq10Osvq9w3P09E_o1uSyvyr-TmpP0WPifdzFl7dLg9plD/s1600/img5.jpg',
-
   'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEieNZX0uYXG-pjiwEimNnJCMLy1JXlR7v2lV1Bofe7ae98mRhFvCm6qwoZ4vtCoCmQ4QB-JU0jFYU_Vy9OGS8AZPrJpPLYkJ6ZaMK9pvevD5G3eMzWojN88i-L0NW0GXlMmfFmpVUPl1ZMInu0LTIWusbzfIPoX69mWwBngsSFHdkxPyrT0XO4hEQlfEIsr/s1600/img4.jpg',
-
   'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhegzQ6xWSLza1Z3zqKDtQ0Q0slMWzjwAS9uhyphenhyphengcpIKlVllvhUMyJvc7oqQ-fE8Bn7UG9zIqygLpZP5AzYWXtoqXEJvV3lYu9uU_UfSnWYxxl11KdsNNMIootU8rS2DxL089Ks-_ABgxhugKG2MBk9ekdrih7Yo0nlkc6kZOhaBGU_sSXbZG8vPezPnUJVg/s320/img3.jpg',
-
   'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2cmMX64Ht5OHkVREKMB_k4W2vJKsjFaEjM4Zq32PEtlQUFNCCaZDx47yL6NT4OiV0xT_RTiRMLuDn9z-6lu-gEhgJWn_vSepFzPUbp3mA6isgKVfQR2s16lo1ODZbJYeBSR20YIcW6B8YmQXuldCwHnvBkGASpfdEu0BfvHCUUjpDTmq6efKR_uMDgSp_/s320/img2.jpg',
-
   'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7y-4pbmEqs7kmYzYbSb9xIZgB2Y6eSv4O7aCbbs1lgx2uSJAONmleL3T74oM10OOZEuysLQYRgBd0BfiAjD5KYhuT2DIOC0WLTUJHQPP6h_ogWOvm5icV1SmfG7rK1xBcTgCH9MIPLhpxVTz3KmDC7AuddUKabHGSxKR1dtrj0uJILlCFWh6PBYMDrCC_/s320/single%20page%20vercel%20(1).jpg'
-
 ];
 
 var slides = document.querySelectorAll('.slide');
 var N = slides.length;
 var cur = 0;
 
-// assign images with shuffle
-
 var pool = imgs.slice();
-
 for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t;}
-
 slides.forEach(function(s,i){
-
   s.style.backgroundImage="url('"+pool[i%pool.length]+"')";
-
   s.setAttribute('data-img',pool[i%pool.length]);
-
 });
 
-// dots
-
 var de = document.getElementById('dots');
-
 for(var i=0;i<N;i++){
-
   var d=document.createElement('div');
-
   d.className='dot'+(i===0?' on':'');
-
   de.appendChild(d);
-
 }
 
 function go(n){
-
   slides[cur].classList.remove('on');
-
   de.children[cur].classList.remove('on');
-
   cur=(n+N)%N;
-
   slides[cur].classList.add('on');
-
   de.children[cur].classList.add('on');
-
 }
 
-// tap navigation
-
 slides.forEach(function(s){
-
   s.querySelector('.tap-up').addEventListener('click',function(e){e.stopPropagation();go(cur-1);});
-
   s.querySelector('.tap-dn').addEventListener('click',function(e){e.stopPropagation();go(cur+1);});
-
 });
-
-// swipe
 
 var sy=0;
-
 document.getElementById('app').addEventListener('touchstart',function(e){sy=e.touches[0].clientY;},{passive:true});
-
 document.getElementById('app').addEventListener('touchend',function(e){
-
   var dy=sy-e.changedTouches[0].clientY;
-
   if(dy>50)go(cur+1);
-
   else if(dy<-50)go(cur-1);
-
 },{passive:true});
 
-// like
-
 document.querySelectorAll('.lbtn').forEach(function(b){
-
   b.addEventListener('click',function(e){e.stopPropagation();b.classList.toggle('liked');});
-
 });
-
-// share
 
 document.querySelectorAll('.sbtn').forEach(function(b){
-
   b.addEventListener('click',function(e){
-
     e.stopPropagation();
-
     var u=b.closest('.slide').getAttribute('data-img');
-
     if(navigator.share)navigator.share({url:u});
-
     else if(navigator.clipboard)navigator.clipboard.writeText(u);
-
   });
-
 });
-
-// download
 
 document.querySelectorAll('.dbtn').forEach(function(b){
-
   b.addEventListener('click',function(e){
-
     e.stopPropagation();
-
     var u=b.closest('.slide').getAttribute('data-img');
-
     var a=document.createElement('a');
-
     a.href=u;a.download='image.jpg';a.target='_blank';
-
     document.body.appendChild(a);a.click();a.remove();
-
   });
-
 });
-
 </script>
 </body>
 </html>
